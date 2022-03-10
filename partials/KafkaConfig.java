@@ -75,8 +75,8 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import java.util.HashMap;
-import java.util.Map;
+import scala.util.HashMap;
+import scala.util.Map;
 
 @Configuration
 {% if hasPublish %}@EnableKafka{% endif %}
@@ -120,7 +120,7 @@ public class Config {
         props.put(JsonSerializer.TYPE_MAPPINGS,
     {%- for schema in asyncapi.allSchemas().values() | isObjectType %}
         {%- if schema.uid() | first !== '<' and schema.type() === 'object' %}
-        "{{schema.uid()}}:{{params['userJavaPackage']}}.model.{{schema.uid() | camelCase | upperFirst}}{% if not loop.last %}," +{% else %}"{% endif %}
+        "{{schema.uid()}}:{{params['userScalaPackage']}}.model.{{schema.uid() | camelCase | upperFirst}}{% if not loop.last %}," +{% else %}"{% endif %}
         {% endif -%}
     {% endfor -%}
         );
@@ -161,11 +161,11 @@ public class Config {
         props.put(JsonDeserializer.TYPE_MAPPINGS,
     {%- for schema in asyncapi.allSchemas().values() | isObjectType %}
         {%- if schema.uid() | first !== '<' and schema.type() === 'object' %}
-        "{{schema.uid()}}:{{params['userJavaPackage']}}.model.{{schema.uid() | camelCase | upperFirst}}{% if not loop.last %}," +{% else %}"{% endif %}
+        "{{schema.uid()}}:{{params['userScalaPackage']}}.model.{{schema.uid() | camelCase | upperFirst}}{% if not loop.last %}," +{% else %}"{% endif %}
         {% endif -%}
     {% endfor -%}
         );
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "{{params['userJavaPackage']}}.model");
+        props.put(JsonDeserializer.TRUSTED_PACKAGES, "{{params['userScalaPackage']}}.model");
         return props;
     }
 {% endif %}

@@ -1,11 +1,11 @@
 {
-  "name": "@asyncapi/java-spring-template",
+  "name": "@asyncapi/scala-spring-template",
   "version": "0.25.1",
-  "description": "Java Spring template for AsyncAPI generator.",
+  "description": "Scala Spring template for AsyncAPI generator.",
   "keywords": [
     "asyncapi",
     "generator",
-    "java",
+    "scala",
     "spring",
     "template"
   ],
@@ -13,12 +13,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asyncapi/java-spring-template.git"
+    "url": "git+https://github.com/asyncapi/scala-spring-template.git"
   },
   "bugs": {
-    "url": "https://github.com/asyncapi/java-spring-template/issues"
+    "url": "https://github.com/asyncapi/scala-spring-template/issues"
   },
-  "homepage": "https://github.com/asyncapi/java-spring-template#readme",
+  "homepage": "https://github.com/asyncapi/scala-spring-template#readme",
   "scripts": {
     "test": "rimraf test/temp && jest --modulePathIgnorePatterns='./template'",
     "lint": "echo \"No linter specified yet\"",
@@ -120,8 +120,8 @@
         "default": "src/main/resources/api/",
         "required": false
       },
-      "javaPackage": {
-        "description": "The Java package of the generated classes. Alternatively you can set the specification extension info.x-java-package",
+      "scalaPackage": {
+        "description": "The Scala package of the generated classes. Alternatively you can set the specification extension info.x-scala-package",
         "default": "com.asyncapi",
         "required": false
       },

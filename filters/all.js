@@ -8,9 +8,9 @@ function defineType(prop, propName) {
         if (prop.items().type() === 'object') {
             return 'List<' + _.upperFirst(_.camelCase(prop.items().uid())) + '>';
         } else if (prop.items().format()) {
-            return 'List<' + toClass(toJavaType(prop.items().format())) + '>';
+            return 'List<' + toClass(toScalaType(prop.items().format())) + '>';
         } else {
-            return 'List<' + toClass(toJavaType(prop.items().type())) + '>';
+            return 'List<' + toClass(toScalaType(prop.items().type())) + '>';
         }
     } else if (prop.enum() && (prop.type() === 'string' || prop.type() === 'integer')) {
             return _.upperFirst(_.camelCase(propName)) + 'Enum';
@@ -33,9 +33,9 @@ function defineType(prop, propName) {
         return propType;
     } else {
         if (prop.format()) {
-            return toJavaType(prop.format());
+            return toScalaType(prop.format());
         } else {
-            return toJavaType(prop.type());
+            return toScalaType(prop.type());
         }
     }
 }
@@ -59,7 +59,7 @@ function toClass(couldBePrimitive) {
 }
 filter.toClass = toClass;
 
-function toJavaType(str, isRequired) {
+function toScalaType(str, isRequired) {
   let resultType;
   switch(str) {
     case 'integer':
@@ -93,7 +93,7 @@ function toJavaType(str, isRequired) {
   }
   return isRequired ? resultType : toClass(resultType);
 }
-filter.toJavaType = toJavaType;
+filter.toScalaType = toScalaType;
 
 function isDefined(obj) {
   return typeof obj !== 'undefined'

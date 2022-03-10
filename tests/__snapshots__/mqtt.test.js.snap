@@ -860,7 +860,7 @@ exports[`template integration tests for generated files using the generator and 
 
 group = \\"com.asyncapi\\"
 version = \\"0.0.1-SNAPSHOT\\"
-sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = ScalaVersion.VERSION_1_8
 
 repositories {
 	mavenCentral()
@@ -1339,7 +1339,7 @@ exports[`template integration tests for generated files using the generator and 
 
 group = \\"com.asyncapi\\"
 version = \\"0.0.1-SNAPSHOT\\"
-sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = ScalaVersion.VERSION_1_8
 
 repositories {
 	mavenCentral()

@@ -8,21 +8,21 @@ module.exports = {
      * @param generator
      */
     'generate:after': generator => {
-        const sourcePath = generator.targetDir + '/src/main/java/';
-        const testPath = generator.targetDir + '/src/test/java/';
-        let javaPackage = generator.templateParams['userJavaPackage'];
+        const sourcePath = generator.targetDir + '/src/main/scala/';
+        const testPath = generator.targetDir + '/src/test/scala/';
+        let scalaPackage = generator.templateParams['userScalaPackage'];
 
-        javaPackage = javaPackage.replace(/\./g, '/');
+        scalaPackage = scalaPackage.replace(/\./g, '/');
 
-        if (javaPackage !== 'com/asyncapi') {
+        if (scalaPackage !== 'com/asyncapi') {
             const tmpSrc = tmp.dirSync();
             const tmpTest = tmp.dirSync();
             fs.copySync(sourcePath + 'com/asyncapi', tmpSrc.name);
             fs.copySync(testPath + 'com/asyncapi', tmpTest.name);
             fs.removeSync(sourcePath + 'com');
             fs.removeSync(testPath + 'com');
-            fs.copySync(tmpSrc.name, sourcePath + javaPackage);
-            fs.copySync(tmpTest.name, testPath + javaPackage);
+            fs.copySync(tmpSrc.name, sourcePath + scalaPackage);
+            fs.copySync(tmpTest.name, testPath + scalaPackage);
             tmp.setGracefulCleanup();
         }
     },
@@ -35,16 +35,16 @@ module.exports = {
      */
     'generate:before': generator => {
         const extensions = generator.asyncapi.info().extensions();
-        let javaPackage = generator.templateParams['javaPackage'];
+        let scalaPackage = generator.templateParams['scalaPackage'];
 
-        if (javaPackage === 'com.asyncapi' && extensions && extensions['x-java-package']) {
-            javaPackage = extensions['x-java-package'];
+        if (scalaPackage === 'com.asyncapi' && extensions && extensions['x-scala-package']) {
+            scalaPackage = extensions['x-scala-package'];
         }
 
-        Object.defineProperty(generator.templateParams, 'userJavaPackage', {
+        Object.defineProperty(generator.templateParams, 'userScalaPackage', {
             enumerable: true,
             get() {
-                return javaPackage;
+                return scalaPackage;
             }
         });
     }

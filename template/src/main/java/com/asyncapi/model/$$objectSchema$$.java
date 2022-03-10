@@ -1,4 +1,4 @@
-package {{ params['userJavaPackage'] }}.model;
+package {{ params['userScalaPackage'] }}.model;
 
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -23,9 +23,9 @@ public class {{schemaName | camelCase | upperFirst}} {
             {%- if prop.items().type() === 'object' %}
     private @Valid List<{{prop.items().uid() | camelCase | upperFirst}}> {{propName | camelCase}}List;
             {%- elif prop.items().format() %}
-    private @Valid List<{{prop.items().format() | toJavaType | toClass}}> {{propName | camelCase}}List;
+    private @Valid List<{{prop.items().format() | toScalaType | toClass}}> {{propName | camelCase}}List;
             {%- else %}
-    private @Valid List<{{prop.items().type() | toJavaType | toClass}}> {{propName | camelCase}}List;
+    private @Valid List<{{prop.items().type() | toScalaType | toClass}}> {{propName | camelCase}}List;
             {%- endif %}
         {%- elif prop.enum() and (prop.type() === 'string' or prop.type() === 'integer') %}
     public enum {{propName | camelCase | upperFirst}}Enum {
@@ -111,9 +111,9 @@ public class {{schemaName | camelCase | upperFirst}} {
     private @Valid {{allName}} {{propName | camelCase}};
         {%- else %}
             {%- if prop.format() %}
-    private @Valid {{prop.format() | toJavaType(isRequired)}} {{propName | camelCase}};
+    private @Valid {{prop.format() | toScalaType(isRequired)}} {{propName | camelCase}};
             {%- else %}
-    private @Valid {{prop.type() | toJavaType(isRequired)}} {{propName | camelCase}};
+    private @Valid {{prop.type() | toScalaType(isRequired)}} {{propName | camelCase}};
             {%- endif %}
         {%- endif %}
     {% endfor %}

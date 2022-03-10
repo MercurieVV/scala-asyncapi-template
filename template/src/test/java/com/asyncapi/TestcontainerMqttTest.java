@@ -8,15 +8,15 @@
         {%- set hasSubscribe = true -%}
     {%- endif -%}
 {%- endfor -%}
-package {{ params['userJavaPackage'] }};
+package {{ params['userScalaPackage'] }};
 
 {% for channelName, channel in asyncapi.channels() %} {% if channel.hasSubscribe() %}
-import {{ params['userJavaPackage'] }}.model.{{channel.subscribe().message().payload().uid() | camelCase | upperFirst}};
+import {{ params['userScalaPackage'] }}.model.{{channel.subscribe().message().payload().uid() | camelCase | upperFirst}};
 {% endif %} {% endfor %}
 {% for channelName, channel in asyncapi.channels() %} {% if channel.hasPublish() %}
-import {{ params['userJavaPackage'] }}.model.{{channel.publish().message().payload().uid() | camelCase | upperFirst}};
+import {{ params['userScalaPackage'] }}.model.{{channel.publish().message().payload().uid() | camelCase | upperFirst}};
 {% endif %} {% endfor %}
-{% if hasSubscribe %}import {{ params['userJavaPackage'] }}.service.PublisherService;{% endif %}
+{% if hasSubscribe %}import {{ params['userScalaPackage'] }}.service.PublisherService;{% endif %}
 import org.eclipse.paho.client.mqttv3.*;
 import org.junit.ClassRule;
 import org.junit.Test;

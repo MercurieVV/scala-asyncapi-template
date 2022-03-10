@@ -1,4 +1,4 @@
-package {{ params['userJavaPackage'] }}.service;
+package {{ params['userScalaPackage'] }}.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +18,7 @@ public class CommandLinePublisher implements CommandLineRunner {
 
         {%- for channelName, channel in asyncapi.channels() %}
             {%- if channel.hasSubscribe() %}
-        publisherService.{{channel.subscribe().id() | camelCase}}({% if asyncapi | isProtocol('kafka') %}(new Random()).nextInt(), new {{ params['userJavaPackage'] }}.model.{{channel.subscribe().message().payload().uid() | camelCase | upperFirst}}(){% else %}"Hello World from {{channelName}}"{% endif %});
+        publisherService.{{channel.subscribe().id() | camelCase}}({% if asyncapi | isProtocol('kafka') %}(new Random()).nextInt(), new {{ params['userScalaPackage'] }}.model.{{channel.subscribe().message().payload().uid() | camelCase | upperFirst}}(){% else %}"Hello World from {{channelName}}"{% endif %});
             {% endif -%}
         {%- endfor %}
         System.out.println("Message sent");

@@ -22,12 +22,12 @@ describe('template integration tests for generated files using the generator and
         await generator.generateFromFile(path.resolve('tests', kafkaExamplePath));
 
         const expectedFiles = [
-            '/src/main/java/com/asyncapi/infrastructure/Config.java',
-            '/src/main/java/com/asyncapi/service/PublisherService.java',
-            '/src/main/java/com/asyncapi/service/MessageHandlerService.java',
-            '/src/main/java/com/asyncapi/model/LightMeasuredPayload.java',
-            '/src/main/java/com/asyncapi/model/LightMeasured.java',
-            '/src/test/java/com/asyncapi/TestcontainerKafkaTest.java',
+            '/src/main/scala/com/asyncapi/infrastructure/Config.scala',
+            '/src/main/scala/com/asyncapi/service/PublisherService.scala',
+            '/src/main/scala/com/asyncapi/service/MessageHandlerService.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasuredPayload.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasured.scala',
+            '/src/test/scala/com/asyncapi/TestcontainerKafkaTest.scala',
             '/build.gradle',
             '/gradle.properties'
         ];

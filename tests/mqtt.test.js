@@ -24,16 +24,16 @@ describe('template integration tests for generated files using the generator and
         await generator.generateFromString(await asyncapiFile.text());
 
         const expectedFiles = [
-            '/src/main/java/com/asyncapi/infrastructure/Config.java',
-            '/src/main/java/com/asyncapi/service/PublisherService.java',
-            '/src/main/java/com/asyncapi/service/MessageHandlerService.java',
-            '/src/main/java/com/asyncapi/model/DimLightPayload.java',
-            '/src/main/java/com/asyncapi/model/LightMeasuredPayload.java',
-            '/src/main/java/com/asyncapi/model/TurnOnOffPayload.java',
-            '/src/main/java/com/asyncapi/model/DimLight.java',
-            '/src/main/java/com/asyncapi/model/LightMeasured.java',
-            '/src/main/java/com/asyncapi/model/TurnOnOff.java',
-            '/src/test/java/com/asyncapi/TestcontainerMqttTest.java',
+            '/src/main/scala/com/asyncapi/infrastructure/Config.scala',
+            '/src/main/scala/com/asyncapi/service/PublisherService.scala',
+            '/src/main/scala/com/asyncapi/service/MessageHandlerService.scala',
+            '/src/main/scala/com/asyncapi/model/DimLightPayload.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasuredPayload.scala',
+            '/src/main/scala/com/asyncapi/model/TurnOnOffPayload.scala',
+            '/src/main/scala/com/asyncapi/model/DimLight.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasured.scala',
+            '/src/main/scala/com/asyncapi/model/TurnOnOff.scala',
+            '/src/test/scala/com/asyncapi/TestcontainerMqttTest.scala',
             '/build.gradle',
             '/gradle.properties'
         ];
@@ -52,8 +52,8 @@ describe('template integration tests for generated files using the generator and
         await generator.generateFromFile(path.resolve('tests', kafkaExamplePath));
 
         const expectedFiles = [
-            '/src/main/java/com/asyncapi/infrastructure/Config.java',
-            '/src/main/java/com/asyncapi/service/PublisherService.java',
+            '/src/main/scala/com/asyncapi/infrastructure/Config.scala',
+            '/src/main/scala/com/asyncapi/service/PublisherService.scala',
             '/src/main/java/com/asyncapi/service/MessageHandlerService.java',
             '/src/main/java/com/asyncapi/model/LightMeasuredPayload.java',
             '/src/main/java/com/asyncapi/model/LightMeasured.java',

@@ -1,8 +1,8 @@
-# Java Spring generator
+# Scala Spring generator
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-_Use your AsyncAPI definition to generate java code to subscribe and publish messages_
+_Use your AsyncAPI definition to generate scala code to subscribe and publish messages_
 
 
 ## Usage
@@ -33,7 +33,7 @@ In order for the generator to know what names to use for some parameters it's ne
 ### From the command-line interface (CLI)
 
 ```bash
-  Usage: ag [options] <asyncapi> @asyncapi/java-spring-template
+  Usage: ag [options] <asyncapi> @asyncapi/scala-spring-template
 
   Options:
 
@@ -49,7 +49,7 @@ In order for the generator to know what names to use for some parameters it's ne
 |---|---|---|---|
 |disableEqualsHashCode|Disable generation of equals and hashCode methods for model classes.|No|`false`|
 |inverseOperations|Generate an application that will publish messages to `publish` operation of channels and read messages from `subscribe` operation of channels. Literally this flag will simply swap `publish` and `subscribe` operations in the channels. <br> This flag will be useful when you want to generate a code of mock for your main application. Be aware, generation could be incomplete and manual changes will be required e.g. if bindings are defined only for case of main application.|No|`false`|
-|javaPackage|The Java package of the generated classes. Alternatively you can set the specification extension `info.x-java-package`. If both extension and parameter are used, parameter has more priority.|No|`com.asyncapi`|
+|scalaPackage|The Scala package of the generated classes. Alternatively you can set the specification extension `info.x-scala-package`. If both extension and parameter are used, parameter has more priority.|No|`com.asyncapi`|
 |listenerPollTimeout|Only for Kafka. Timeout in ms to use when polling the consumer.|No|`3000`|
 |listenerConcurrency|Only for Kafka. Number of threads to run in the listener containers.|No|`3`|
 |addTypeInfoHeader|Only for Kafka. Add type information to message header.|No|`true`|
@@ -61,12 +61,12 @@ In order for the generator to know what names to use for some parameters it's ne
 
 The shortest possible syntax:
 ```bash
-ag asyncapi.yaml @asyncapi/java-spring-template
+ag asyncapi.yaml @asyncapi/scala-spring-template
 ```
 
 Specify where to put the result and define poll timeout:
 ```bash
-ag -o ./src asyncapi.yaml -p listenerPollTimeout=5000 @asyncapi/java-spring-template
+ag -o ./src asyncapi.yaml -p listenerPollTimeout=5000 @asyncapi/scala-spring-template
 ```
 
 If you don't have the AsyncAPI Generator installed, you can install it like this:
@@ -79,8 +79,8 @@ npm install -g @asyncapi/generator
 
 1. Clone the repository:
    ```
-   git clone https://github.com/asyncapi/java-spring-template
-   cd java-spring-template
+   git clone https://github.com/asyncapi/scala-spring-template
+   cd scala-spring-template
    ```
 1. Make sure template has all the dependencies:
    ```
@@ -122,9 +122,9 @@ docker-compose -f src/main/docker/rabbitmq.yml up -d
 See the list of features that are still missing in the component:
 
 - [ ] support of Kafka is done based on clear "spring-kafka" library without integration like for mqtt or amqp
-- [ ] generated code for protocol `amqp` could be out of date. Please have a look to [application.yaml](template/src/main/resources/application.yml) and [AmqpConfig.java](partials/AmqpConfig.java) 
+- [ ] generated code for protocol `amqp` could be out of date. Please have a look to [application.yaml](template/src/main/resources/application.yml) and [AmqpConfig.scala](partials/AmqpConfig.scala) 
 - [ ] tests for protocol `amqp` are not provided
-- [x] add annotation to the [model generation](template/src/main/java/com/asyncapi/model). Consider "@Valid", "@JsonProperty", "@Size", "@NotNull" e.t.c.
+- [x] add annotation to the [model generation](template/src/main/scala/com/asyncapi/model). Consider "@Valid", "@JsonProperty", "@Size", "@NotNull" e.t.c.
 - [ ] [`parameters`](https://github.com/asyncapi/asyncapi/blob/master/versions/2.0.0/asyncapi.md#parametersObject) for topics are not supported
 - [ ] [`server variables`](https://github.com/asyncapi/asyncapi/blob/master/versions/2.0.0/asyncapi.md#serverVariableObject) are not entirely supported 
 - [ ] [`security schemas`](https://github.com/asyncapi/asyncapi/blob/master/versions/2.0.0/asyncapi.md#securitySchemeObject) are not supported
@@ -144,7 +144,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/Tenischev"><img src="https://avatars1.githubusercontent.com/u/4137916?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Semen</b></sub></a><br /><a href="https://github.com/asyncapi/java-spring-template/commits?author=Tenischev" title="Documentation">📖</a> <a href="https://github.com/asyncapi/java-spring-template/commits?author=Tenischev" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Tenischev"><img src="https://avatars1.githubusercontent.com/u/4137916?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Semen</b></sub></a><br /><a href="https://github.com/asyncapi/scala-spring-template/commits?author=Tenischev" title="Documentation">📖</a> <a href="https://github.com/asyncapi/java-spring-template/commits?author=Tenischev" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/francesconobilia/"><img src="https://avatars1.githubusercontent.com/u/10063590?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Francesco Nobilia</b></sub></a><br /><a href="https://github.com/asyncapi/java-spring-template/pulls?q=is%3Apr+reviewed-by%3Afnobilia" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="http://www.amrutprabhu.com"><img src="https://avatars.githubusercontent.com/u/8725949?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Amrut Prabhu</b></sub></a><br /><a href="https://github.com/asyncapi/java-spring-template/commits?author=amrutprabhu" title="Code">💻</a></td>
   </tr>

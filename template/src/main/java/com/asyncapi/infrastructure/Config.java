@@ -1,4 +1,4 @@
-package {{ params['userJavaPackage'] }}.infrastructure;
+package {{ params['userScalaPackage'] }}.infrastructure;
 
 {%- from "partials/AmqpConfig.java" import amqpConfig -%}
 {%- from "partials/MqttConfig.java" import mqttConfig -%}

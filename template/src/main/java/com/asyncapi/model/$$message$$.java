@@ -1,4 +1,4 @@
-package {{ params['userJavaPackage'] }}.model;
+package {{ params['userScalaPackage'] }}.model;
 
 import javax.validation.Valid;
 

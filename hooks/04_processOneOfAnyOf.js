@@ -51,7 +51,7 @@ module.exports = {
                 const className = _.upperFirst(_.camelCase(value.uid()));
                 const reg = new RegExp('public class ' + className, 'g')
                 const options = {
-                    files: path.resolve(generator.targetDir, `src/main/java/com/asyncapi/model/${key}.java`),
+                    files: path.resolve(generator.targetDir, `src/main/scala/com/asyncapi/model/${key}.scala`),
                     from: reg,
                     to: 'public class ' + className + ' implements ' + interfaces.get(value.uid()),
                 };

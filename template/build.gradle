@@ -1,12 +1,12 @@
 plugins {
 	id 'org.springframework.boot' version "$springBootVersion"
 	id 'io.spring.dependency-management' version "$springDependencyManager"
-	id 'java'
+	id 'scala'
 }
 
-group = "{{ params['userJavaPackage'] }}"
+group = "{{ params['userScalaPackage'] }}"
 version = "0.0.1-SNAPSHOT"
-sourceCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = ScalaVersion.VERSION_1_8
 
 repositories {
 	mavenCentral()
@@ -27,7 +27,7 @@ dependencies {
 	{% endif -%}
     implementation('com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider')
 	implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
-    implementation('javax.validation:validation-api')
+    implementation('scalax.validation:validation-api')
 	implementation('org.springframework.boot:spring-boot-starter-integration')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.testcontainers:testcontainers:1.14.1')
