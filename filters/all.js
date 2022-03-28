@@ -6,11 +6,11 @@ function defineType(prop, propName) {
         return _.upperFirst(_.camelCase(prop.uid()));
     } else if (prop.type() === 'array') {
         if (prop.items().type() === 'object') {
-            return 'List<' + _.upperFirst(_.camelCase(prop.items().uid())) + '>';
+            return 'List[' + _.upperFirst(_.camelCase(prop.items().uid())) + ']';
         } else if (prop.items().format()) {
-            return 'List<' + toClass(toScalaType(prop.items().format())) + '>';
+            return 'List[' + toClass(toScalaType(prop.items().format())) + ']';
         } else {
-            return 'List<' + toClass(toScalaType(prop.items().type())) + '>';
+            return 'List[' + toClass(toScalaType(prop.items().type())) + ']';
         }
     } else if (prop.enum() && (prop.type() === 'string' || prop.type() === 'integer')) {
             return _.upperFirst(_.camelCase(propName)) + 'Enum';
@@ -44,7 +44,7 @@ filter.defineType = defineType;
 function toClass(couldBePrimitive) {
     switch(couldBePrimitive) {
         case 'int':
-            return 'Integer';
+            return 'Int';
         case 'long':
             return 'Long';
         case 'boolean':
@@ -64,12 +64,12 @@ function toScalaType(str, isRequired) {
   switch(str) {
     case 'integer':
     case 'int32':
-      resultType = 'int'; break;
+      resultType = 'Int'; break;
     case 'long':
     case 'int64':
-      resultType = 'long'; break;
+      resultType = 'Long'; break;
     case 'boolean':
-      resultType = 'boolean'; break;
+      resultType = 'Boolean'; break;
     case 'date':
       resultType = 'java.time.LocalDate'; break;
     case 'time':
@@ -82,16 +82,16 @@ function toScalaType(str, isRequired) {
     case 'byte':
       resultType = 'String'; break;
     case 'float':
-      resultType = 'float'; break;
+      resultType = 'Float'; break;
     case 'number':
     case 'double':
-      resultType = 'double'; break;
+      resultType = 'Double'; break;
     case 'binary':
-      resultType = 'byte[]'; break;
+      resultType = 'Array[Byte]'; break;
     default:
       resultType = 'Object'; break;
   }
-  return isRequired ? resultType : toClass(resultType);
+  return isRequired ? resultType : 'Option[' + toClass(resultType) + ']';
 }
 filter.toScalaType = toScalaType;
 

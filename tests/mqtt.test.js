@@ -54,10 +54,10 @@ describe('template integration tests for generated files using the generator and
         const expectedFiles = [
             '/src/main/scala/com/asyncapi/infrastructure/Config.scala',
             '/src/main/scala/com/asyncapi/service/PublisherService.scala',
-            '/src/main/java/com/asyncapi/service/MessageHandlerService.java',
-            '/src/main/java/com/asyncapi/model/LightMeasuredPayload.java',
-            '/src/main/java/com/asyncapi/model/LightMeasured.java',
-            '/src/test/java/com/asyncapi/TestcontainerMqttTest.java',
+            '/src/main/scala/com/asyncapi/service/MessageHandlerService.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasuredPayload.scala',
+            '/src/main/scala/com/asyncapi/model/LightMeasured.scala',
+            '/src/test/scala/com/asyncapi/TestcontainerMqttTest.scala',
             '/build.gradle',
             '/gradle.properties'
         ];

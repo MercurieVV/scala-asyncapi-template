@@ -1,15 +1,10 @@
 package {{ params['userScalaPackage'] }}.model;
 
-import javax.validation.Valid;
-
-import java.util.Objects;
-import java.util.List;
-
 {% if message.description() or message.examples()%}/**{% for line in message.description() | splitByLines %}
  * {{ line | safe}}{% endfor %}{% if message.examples() %}
  * Examples: {{message.examples() | examplesToString | safe}}{% endif %}
  */{% endif %}
-public class {{messageName | camelCase | upperFirst}} {
+final case class {{messageName | camelCase | upperFirst}} (
     {%- if message.payload().anyOf() or message.payload().oneOf() %}
         {%- set payloadName = 'OneOf' %}{%- set hasPrimitive = false %}
         {%- for obj in message.payload().anyOf() %}
@@ -23,7 +18,8 @@ public class {{messageName | camelCase | upperFirst}} {
         {%- if hasPrimitive %}
             {%- set payloadName = 'Object' %}
         {%- else %}
-    public interface {{payloadName}} {
+
+    trait {{payloadName}} {
 
     }
         {%- endif %}
@@ -55,47 +51,5 @@ public class {{messageName | camelCase | upperFirst}} {
     {% else %}
         {%- set payloadName = message.payload().uid() | camelCase | upperFirst %}
     {%- endif %}
-    private @Valid {{payloadName}} payload;
-
-    public {{payloadName}} getPayload() {
-        return payload;
-    }
-
-    public void setPayload({{payloadName}} payload) {
-        this.payload = payload;
-    }
-
-    {% if params.disableEqualsHashCode === 'false' %}@Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        {{messageName | camelCase | upperFirst}} event = ({{messageName | camelCase | upperFirst}}) o;
-        return Objects.equals(this.payload, event.payload);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(payload);
-    }{% endif %}
-
-    @Override
-    public String toString() {
-        return "class {{messageName | camelCase | upperFirst}} {\n" +
-                "    payload: " + toIndentedString(payload) + "\n" +
-                "}";
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-}
+    private {{payloadName}} payload;
+)

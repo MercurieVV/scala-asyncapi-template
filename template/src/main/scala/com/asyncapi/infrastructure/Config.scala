@@ -1,8 +1,8 @@
 package {{ params['userScalaPackage'] }}.infrastructure;
 
-{%- from "partials/AmqpConfig.java" import amqpConfig -%}
-{%- from "partials/MqttConfig.java" import mqttConfig -%}
-{%- from "partials/KafkaConfig.java" import kafkaConfig -%}
+{%- from "partials/AmqpConfig.scala" import amqpConfig -%}
+{%- from "partials/MqttConfig.scala" import mqttConfig -%}
+{%- from "partials/KafkaConfig.scala" import kafkaConfig -%}
 
 {%- if asyncapi | isProtocol('amqp') -%}
 {{- amqpConfig(asyncapi, params) -}}
